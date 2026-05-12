@@ -1,27 +1,21 @@
 package factory;
 
-import model.*;
+import model.Viaje;
+import model.ViajeCompartido;
+import model.ViajeEconomico;
+import model.ViajeMoto;
+import model.ViajePremium;
 
 public class ViajeFactory {
     public static Viaje crearViaje(String tipo) {
         String t = tipo == null ? "economico" : tipo.toLowerCase();
-        return switch (t) {
-            case "premium" -> {
-                System.out.println("[Factory] Creando viaje premium");
-                yield new ViajePremium();
-            }
-            case "moto" -> {
-                System.out.println("[Factory] Creando viaje moto");
-                yield new ViajeMoto();
-            }
-            case "compartido" -> {
-                System.out.println("[Factory] Creando viaje compartido");
-                yield new ViajeCompartido();
-            }
-            default -> {
-                System.out.println("[Factory] Creando viaje economico");
-                yield new ViajeEconomico();
-            }
+        Viaje viaje = switch (t) {
+            case "premium" -> new ViajePremium();
+            case "moto" -> new ViajeMoto();
+            case "compartido" -> new ViajeCompartido();
+            default -> new ViajeEconomico();
         };
+        System.out.println("  ✓ [Factory] Viaje " + viaje.getTipo() + " creado");
+        return viaje;
     }
 }

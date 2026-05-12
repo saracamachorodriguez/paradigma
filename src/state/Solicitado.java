@@ -1,12 +1,14 @@
 package state;
 
 import model.Viaje;
+import observer.Conductor;
 
 public class Solicitado implements EstadoViaje {
     @Override
-    public void asignar(Viaje v) {
-        System.out.println("[State] Transición: Solicitado -> Asignado");
+    public void asignar(Viaje v, Conductor conductor) {
+        v.setConductor(conductor);
         v.setEstado(new Asignado());
+        System.out.println("    ✓ Estado: Solicitado → Asignado");
     }
 
     @Override

@@ -20,11 +20,12 @@ public class RideApp {
     }
 
     public Viaje solicitarViaje(Pasajero pasajero, String tipo) {
-        System.out.println("[RideApp] Solicitud recibida");
+        System.out.println("✓ [RideApp] Solicitud de viaje recibida");
         Viaje viaje = ViajeFactory.crearViaje(tipo);
         viaje.setPasajero(pasajero);
         viaje.setEstado(new Solicitado());
-        viaje.notificar("Viaje solicitado");
+        System.out.println("  ✓ Estado: Solicitado");
+        viaje.notificar("Viaje solicitado por " + pasajero.getNombre());
         return viaje;
     }
 

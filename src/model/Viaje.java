@@ -32,7 +32,7 @@ public abstract class Viaje implements Observable {
     public Conductor getConductor() { return conductor; }
     public void setPasajero(Pasajero p) { this.pasajero = p; }
 
-    // Option setters for builder (public)
+    // Option setters and getters for builder (public)
     public void setWifi(boolean wifi) { this.wifi = wifi; }
     public void setMascota(boolean mascota) { this.mascota = mascota; }
     public void setAireAcondicionado(boolean aireAcondicionado) { this.aireAcondicionado = aireAcondicionado; }
@@ -40,15 +40,18 @@ public abstract class Viaje implements Observable {
     public void setMusica(boolean musica) { this.musica = musica; }
     public void setNumeroPasajeros(int numeroPasajeros) { this.numeroPasajeros = numeroPasajeros; }
 
-    // State delegation
-    public void setEstado(EstadoViaje estado) {
-        this.estado = estado;
-        System.out.println("[State] Estado actual: " + estado.getNombre());
-    }
+    public boolean isWifi() { return wifi; }
+    public boolean isMascota() { return mascota; }
+    public boolean isAireAcondicionado() { return aireAcondicionado; }
+    public boolean isEquipaje() { return equipaje; }
+    public boolean isMusica() { return musica; }
+    public int getNumeroPasajeros() { return numeroPasajeros; }
 
+    public void setEstado(EstadoViaje estado) { this.estado = estado; }
     public EstadoViaje getEstado() { return estado; }
+
     // State actions - delegate to current state
-    public void asignarConductor() { estado.asignar(this); }
+    public void asignarConductor(Conductor conductor) { estado.asignar(this, conductor); }
     public void iniciarViaje() { estado.iniciar(this); }
     public void cancelarViaje() { estado.cancelar(this); }
     public void finalizarViaje() { estado.finalizar(this); }

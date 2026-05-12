@@ -9,7 +9,7 @@ public class Conductor implements Observer {
 
     @Override
     public void update(String evento, Viaje viaje) {
-        System.out.println("[Observer] Conductor notificado: " + evento + " (tipo=" + viaje.getTipo() + ")");
+        System.out.println("  → [Conductor] " + nombre + " notificado: " + evento);
     }
 
     public String getNombre() { return nombre; }

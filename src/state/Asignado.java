@@ -5,8 +5,8 @@ import model.Viaje;
 public class Asignado implements EstadoViaje {
     @Override
     public void iniciar(Viaje v) {
-        System.out.println("[State] Transición: Asignado -> EnCamino");
         v.setEstado(new EnCamino());
+        System.out.println("    ✓ Estado: Asignado → En camino");
     }
 
     @Override
